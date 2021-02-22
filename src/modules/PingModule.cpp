@@ -28,16 +28,19 @@
 // ****************************************************************************/
 ////////////////////////////////////////////////////////////////////////////////
 
+#include <PingModule.h>
+#include <GlobalState.h>
 #include <Logger.h>
 #include <Utility.h>
 #include <Node.h>
-#include <PingModule.h>
-#include <stdlib.h>
 
 PingModule::PingModule()
     : Module(PING_MODULE_ID, "ping")
 {
     //Register callbacks n' stuff
+
+    //Enable the logtag for our vendor module template
+    GS->logger.EnableTag("TMOD");
 
     //Save configuration to base class variables
     //sizeof configuration must be a multiple of 4 bytes
@@ -57,10 +60,17 @@ void PingModule::ResetToDefaultConfiguration()
 
     //Set additional config values...
 
+    //This line allows us to have different configurations of this module depending on the featureset
+    //SET_FEATURESET_CONFIGURATION_VENDOR(&configuration, this);
 }
 
 void PingModule::ConfigurationLoadedHandler(u8* migratableConfig, u16 migratableConfigLength)
 {
+    PingModuleConfiguration* newConfig = (PingModuleConfiguration*)migratableConfig;
+
+    //Version migration can be added here, e.g. if module has version 2 and config is version 1
+    if(newConfig != nullptr && newConfig->moduleVersion == 1){/* ... */};
+
     //Do additional initialization upon loading the config
 
 
@@ -77,28 +87,63 @@ void PingModule::TimerEventHandler(u16 passedTimeDs)
 #ifdef TERMINAL_ENABLED
 TerminalCommandHandlerReturnType PingModule::TerminalCommandHandler(const char* commandArgs[], u8 commandArgsSize)
 {
-    //React on commands, return true if handled, false otherwise
-    if(TERMARGS(0, "pingmod")){
+    if(TERMARGS(0,"pingmod")){
         //Get the id of the target node
         NodeId targetNodeId = Utility::StringToU16(commandArgs[1]);
         logt("PINGMOD", "Trying to ping node %u", targetNodeId);
 
-        //Some data
-        u8 data[1];
-        data[0] = 123;
-
-        //Send ping packet to that node
-        SendModuleActionMessage(
-                MessageType::MODULE_TRIGGER_ACTION,
-                targetNodeId,
-                PingModuleTriggerActionMessages::TRIGGER_PING,
-                0,
-                data,
-                1, //size of payload
-                false
-        );
+        //TODO: Send ping packet to that node
 
         return TerminalCommandHandlerReturnType::SUCCESS;
+    }
+    //React on commands, return true if handled, false otherwise
+    if(commandArgsSize >= 3 && TERMARGS(2, moduleName))
+    {
+        if(TERMARGS(0, "action"))
+        {
+            if(!TERMARGS(2, moduleName)) return TerminalCommandHandlerReturnType::UNKNOWN;
+
+            if(commandArgsSize >= 5 && TERMARGS(3, "one"))
+            {
+                logt("TMOD", "Command one executed");
+
+                PingModuleCommandOneMessage data;
+                data.exampleValue = Utility::StringToU8(commandArgs[4]);
+
+                //PART 1 of sending a message: Some command is entered and a request message is sent
+                SendModuleActionMessage(
+                    MessageType::MODULE_TRIGGER_ACTION,
+                    NODE_ID_BROADCAST,
+                    (u8)PingModuleTriggerActionMessages::COMMAND_ONE_MESSAGE,
+                    0,
+                    (u8*)&data,
+                    SIZEOF_PING_MODULE_COMMAND_ONE_MESSAGE,
+                    true
+                );
+
+                return TerminalCommandHandlerReturnType::SUCCESS;
+            }
+            else if(commandArgsSize >= 4 && TERMARGS(3, "two"))
+            {
+                logt("TMOD", "Command two executed");
+
+                SendModuleActionMessage(
+                    MessageType::MODULE_TRIGGER_ACTION,
+                    NODE_ID_BROADCAST,
+                    (u8)PingModuleTriggerActionMessages::COMMAND_TWO_MESSAGE,
+                    0,
+                    nullptr,
+                    0,
+                    true,
+                    true
+                );
+
+                return TerminalCommandHandlerReturnType::SUCCESS;
+            }
+
+            return TerminalCommandHandlerReturnType::UNKNOWN;
+
+        }
     }
 
     //Must be called to allow the module to get and set the config
@@ -106,52 +151,40 @@ TerminalCommandHandlerReturnType PingModule::TerminalCommandHandler(const char* 
 }
 #endif
 
+
 void PingModule::MeshMessageReceivedHandler(BaseConnection* connection, BaseConnectionSendData* sendData, ConnPacketHeader const * packetHeader)
 {
     //Must call superclass for handling
     Module::MeshMessageReceivedHandler(connection, sendData, packetHeader);
 
-    //Filter trigger_action messages
-    if(packetHeader->messageType == MessageType::MODULE_TRIGGER_ACTION){
+    if(packetHeader->messageType == MessageType::MODULE_TRIGGER_ACTION && sendData->dataLength >= SIZEOF_CONN_PACKET_MODULE_VENDOR){
         ConnPacketModuleVendor const * packet = (ConnPacketModuleVendor const *)packetHeader;
 
         //Check if our module is meant and we should trigger an action
-        if(packet->moduleId == vendorModuleId && sendData->dataLength >= SIZEOF_CONN_PACKET_MODULE_VENDOR){
-            //It's a ping message
-            if(packet->actionType == PingModuleTriggerActionMessages::TRIGGER_PING){
+        if(packet->moduleId == vendorModuleId){
+            if(packet->actionType == PingModuleTriggerActionMessages::COMMAND_ONE_MESSAGE)
+            {
+                const PingModuleCommandOneMessage* data = (const PingModuleCommandOneMessage*)packet->data;
 
-                //Inform the user
-                logt("PINGMOD", "Ping request received with data: %d", packet->data[0]);
-
-                u8 data[2];
-                data[0] = packet->data[0];
-                data[1] = 111;
-
-                //Send ping packet to that node
-                SendModuleActionMessage(
-                        MessageType::MODULE_ACTION_RESPONSE,
-                        packetHeader->sender,
-                        PingModuleActionResponseMessages::PING_RESPONSE,
-                        0,
-                        data,
-                        2,
-                        false
-                );
+                logt("TMOD", "Got command one message with %u", data->exampleValue);
+            }
+            else if (packet->actionType == PingModuleTriggerActionMessages::COMMAND_TWO_MESSAGE)
+            {
+                logt("TMOD", "Got command two message");
             }
         }
     }
 
-    //Parse Module action_response messages
+    //Parse Module responses
     if(packetHeader->messageType == MessageType::MODULE_ACTION_RESPONSE && sendData->dataLength >= SIZEOF_CONN_PACKET_MODULE_VENDOR){
-
         ConnPacketModuleVendor const * packet = (ConnPacketModuleVendor const *)packetHeader;
 
         //Check if our module is meant and we should trigger an action
         if(packet->moduleId == vendorModuleId)
         {
-            //Somebody reported its connections back
-            if(packet->actionType == PingModuleActionResponseMessages::PING_RESPONSE){
-                logt("PINGMOD", "Ping came back from %u with data %d, %d", packet->header.sender, packet->data[0], packet->data[1]);
+            if(packet->actionType == PingModuleActionResponseMessages::COMMAND_ONE_MESSAGE_RESPONSE)
+            {
+
             }
         }
     }
