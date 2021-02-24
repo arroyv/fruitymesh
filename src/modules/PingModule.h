@@ -38,52 +38,29 @@
  */
 
 //This should be set to the correct vendor and subId
-constexpr VendorModuleId PING_MODULE_ID = GET_VENDOR_MODULE_ID(0xABCD, 1);
-
+constexpr VendorModuleId PING_MODULE_ID = GET_VENDOR_MODULE_ID(0xABCD, 2);
 constexpr u8 PING_MODULE_CONFIG_VERSION = 1;
 
-#pragma pack(push)
-#pragma pack(1)
-//Module configuration that is saved persistently (size must be multiple of 4)
-struct PingModuleConfiguration : ModuleConfiguration {
-    //Insert more persistent config values here
-    u8 exampleValue;
-};
-#pragma pack(pop)
 
 class PingModule : public Module
 {
+private:
+
+    //Module configuration that is saved persistently (size must be multiple of 4)
+    struct PingModuleConfiguration : ModuleConfiguration{
+        //Insert more persistent config values here
+    };
+
+    PingModuleConfiguration configuration;
+
+    enum PingModuleTriggerActionMessages{
+        TRIGGER_PING=0
+    };
+
+    enum PingModuleActionResponseMessages{
+        PING_RESPONSE=0
+    };
 public:
-
-    enum PingModuleTriggerActionMessages {
-        COMMAND_ONE_MESSAGE = 0,
-        COMMAND_TWO_MESSAGE = 1,
-    };
-
-    enum PingModuleActionResponseMessages {
-        COMMAND_ONE_MESSAGE_RESPONSE = 0,
-        COMMAND_TWO_MESSAGE_RESPONSE = 1,
-    };
-
-    //####### Module messages (these need to be packed)
-#pragma pack(push)
-#pragma pack(1)
-
-    static constexpr int SIZEOF_PING_MODULE_COMMAND_ONE_MESSAGE = 1;
-    typedef struct
-    {
-        //Insert values here
-        u8 exampleValue;
-
-    } PingModuleCommandOneMessage;
-    STATIC_ASSERT_SIZE(PingModuleCommandOneMessage, SIZEOF_PING_MODULE_COMMAND_ONE_MESSAGE);
-    
-#pragma pack(pop)
-    //####### Module messages end
-
-    //Declare the configuration used for this module
-    DECLARE_CONFIG_AND_PACKED_STRUCT(PingModuleConfiguration);
-
     PingModule();
 
     void ConfigurationLoadedHandler(u8* migratableConfig, u16 migratableConfigLength) override;
