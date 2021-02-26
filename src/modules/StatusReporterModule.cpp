@@ -934,20 +934,33 @@ void StatusReporterModule::MeshMessageReceivedHandler(BaseConnection* connection
     if (packetHeader->messageType == MessageType::COMPONENT_ACT && sendData->dataLength >= SIZEOF_CONN_PACKET_COMPONENT_MESSAGE)
     {
         ConnPacketComponentMessage const * packet = (ConnPacketComponentMessage const *)packetHeader;
+        logt("ERROR", "packet->componentHeader.moduleId: %u", (u32)packet->componentHeader.moduleId);
+        logt("ERROR", "moduleId: %u", (u32)moduleId);
         if (packet->componentHeader.moduleId == moduleId)
         {
+            logt("ERROR", "packet->componentHeader.actionType: %u", (u32)packet->componentHeader.actionType);
+            logt("ERROR", "(u8)ActorMessageActionType::WRITE: %u", (u8)ActorMessageActionType::WRITE);
             if (packet->componentHeader.actionType == (u8)ActorMessageActionType::WRITE)
             {
+                logt("ERROR", "packet->componentHeader.component: %u", (u32)packet->componentHeader.component);
+                logt("ERROR", "(u16)StatusReporterModuleComponent::TIME: %u", (u16)StatusReporterModuleComponent::TIME);
                 if (packet->componentHeader.component == (u16)StatusReporterModuleComponent::TIME)
                 {
+                    logt("ERROR", "packet->componentHeader.registerAddress: %u", (u32)packet->componentHeader.registerAddress);
+                    logt("ERROR", "(u16)StatusReporterModuleRegister::TIME: %u", (u16)StatusReporterModuleRegister::TIME);
                     if (packet->componentHeader.registerAddress == (u16)StatusReporterModuleRegister::TIME)
                     {
+                        logt("ERROR", "packet->payload[0]: %u", packet->payload[0]);
                         if (packet->payload[0] != 0)
                         {
                             periodicTimeSendStartTimestampDs = GS->appTimerDs;
                             timeSinceLastPeriodicTimeSendDs = TIME_BETWEEN_PERIODIC_TIME_SENDS_DS;
                             periodicTimeSendReceiver = packet->componentHeader.header.sender;
                             periodicTimeSendRequestHandle = packet->componentHeader.requestHandle;
+                            logt("ERROR", "periodicTimeSendStartTimestampDs: %u", (u32)periodicTimeSendStartTimestampDs);
+                            logt("ERROR", "timeSinceLastPeriodicTimeSendDs: %u", (u32)timeSinceLastPeriodicTimeSendDs);
+                            logt("ERROR", "periodicTimeSendReceiver: %u", (u32)periodicTimeSendReceiver);
+                            logt("ERROR", "periodicTimeSendRequestHandle: %u", (u32)periodicTimeSendRequestHandle);
                         }
                         else
                         {
@@ -957,6 +970,7 @@ void StatusReporterModule::MeshMessageReceivedHandler(BaseConnection* connection
                 }
             }
         }
+        logt("ERROR", "periodicTimeSendStartTimestampDs: %u", (u32)periodicTimeSendStartTimestampDs);
     }
 }
 
@@ -976,6 +990,7 @@ void StatusReporterModule::MeshConnectionChangedHandler(MeshConnection& connecti
 
 void StatusReporterModule::AdcEventHandler()
 {
+    logt("ERROR", "In side AdcEventHandler");
     StatusReporterModule * p_statusReporterModule = (StatusReporterModule *)GS->node.GetModuleById(ModuleId::STATUS_REPORTER_MODULE);
     if (p_statusReporterModule == nullptr) return;
     p_statusReporterModule->ConvertADCtoVoltage();
@@ -983,9 +998,12 @@ void StatusReporterModule::AdcEventHandler()
 }
 
 void StatusReporterModule::InitBatteryVoltageADC() {
+    logt("ERROR", "In side InitBatteryVoltageADC");
 #if IS_ACTIVE(BATTERY_MEASUREMENT)
     //Do not initialize battery checking if board does not support it
     if(Boardconfig->batteryAdcInputPin == -1 || isADCInitialized){
+        logt("ERROR", "battry pin is: %u", (u32)Boardconfig->batteryAdcInputPin);
+        logt("ERROR", "ADC is initialized?: %u", (u32)isADCInitialized);
         return;
     }
     ErrorType error = FruityHal::AdcInit(AdcEventHandler);
@@ -1026,6 +1044,8 @@ void StatusReporterModule::InitBatteryVoltageADC() {
 #endif
 }
 void StatusReporterModule::BatteryVoltageADC(){
+    logt("ERROR", "Inside BatteryVoltageADC function");
+    logt("ERROR", ": %u", (u32)Boardconfig->batteryAdcInputPin);
 #if IS_ACTIVE(BATTERY_MEASUREMENT)
     InitBatteryVoltageADC();
     //Check if initialization did work
@@ -1047,6 +1067,7 @@ void StatusReporterModule::BatteryVoltageADC(){
 
 void StatusReporterModule::ConvertADCtoVoltage()
 {
+    logt("ERROR", "In side ConvertADCtoVoltage");
 #if IS_ACTIVE(BATTERY_MEASUREMENT)
     u32 adc_sum_value = 0;
     for (u16 i = 0; i < BATTERY_SAMPLES_IN_BUFFER; i++) {
@@ -1076,11 +1097,13 @@ bool StatusReporterModule::IsPeriodicTimeSendActive()
 
 u8 StatusReporterModule::GetBatteryVoltage() const
 {
+    logt("ERROR", "In side GetBatteryVoltage");
     return batteryVoltageDv;
 }
 
 u16 StatusReporterModule::ExternalVoltageDividerDv(u32 Resistor1, u32 Resistor2)
 {
+    logt("ERROR", "In side ExternalVoltageDividerDv");
     u16 voltageDividerDv = u16(((double(Resistor1 + Resistor2)) / double(Resistor2)) * 10);
     return voltageDividerDv;
 }

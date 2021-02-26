@@ -66,11 +66,6 @@ void PingModule::ResetToDefaultConfiguration()
 
 void PingModule::ConfigurationLoadedHandler(u8* migratableConfig, u16 migratableConfigLength)
 {
-    PingModuleConfiguration* newConfig = (PingModuleConfiguration*)migratableConfig;
-
-    //Version migration can be added here, e.g. if module has version 2 and config is version 1
-    if(newConfig != nullptr && newConfig->moduleVersion == 1){/* ... */};
-
     //Do additional initialization upon loading the config
 
 
