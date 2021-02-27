@@ -1,0 +1,9 @@
+{
+    "cmake.configureSettings":{
+        "GCC_PATH":"C:/Program Files (x86)/GNU Tools ARM Embedded/4.9 2015q3",
+        "BUILD_FEATURESETS":"ON"
+    },
+    "cmake.buildDirectory": "${workspaceFolder}/_build/vscode/",
+    "cmake.configureOnOpen": true,
+    "cmake.generator":"Unix Makefiles"
+}
