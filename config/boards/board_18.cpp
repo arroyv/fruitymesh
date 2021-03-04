@@ -29,7 +29,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 #include <FruityHal.h>
 #include <Boardconfig.h>
-//PCA10056 - nRF82840 Devkit
+//PCA10056 - nRF52840 Devkit
 void SetBoard_18(BoardConfiguration* c)
 {
     if(c->boardType == 18)
