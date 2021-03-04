@@ -156,13 +156,13 @@ public:
 
         enum class senseModuleTriggerActionMessages : u8
         {
-            SET_LED = 0,
+            // SET_LED = 0,
             GET_STATUS = 1,
             //GET_DEVICE_INFO = 2, removed as of 17.05.2019
             // GET_ALL_CONNECTIONS = 3,
             // GET_NEARBY_NODES = 4,
             // SET_INITIALIZED = 5,
-            GET_ERRORS = 6,
+            // GET_ERRORS = 6,
             // GET_REBOOT_REASON = 8,
             // SET_KEEP_ALIVE = 9,
             // GET_DEVICE_INFO_V2 = 10,
@@ -172,14 +172,14 @@ public:
 
         enum class senseModuleActionResponseMessages : u8
         {
-            SET_LED_RESULT = 0,
+            // SET_LED_RESULT = 0,
             STATUS = 1,
             //DEVICE_INFO = 2, removed as of 17.05.2019
             // ALL_CONNECTIONS = 3,
             // NEARBY_NODES = 4,
             // SET_INITIALIZED_RESULT = 5,
-            ERROR_LOG_ENTRY = 6,
-            //DISCONNECT_REASON = 7, removed as of 21.05.2019
+            // ERROR_LOG_ENTRY = 6,
+            // DISCONNECT_REASON = 7, removed as of 21.05.2019
             // REBOOT_REASON = 8,
             // DEVICE_INFO_V2 = 10,
             // ALL_CONNECTIONS_VERBOSE = 12,
@@ -239,17 +239,17 @@ private:
             } senseModuleStatusMessage;
             STATIC_ASSERT_SIZE(senseModuleStatusMessage, 1);//TODO CHANGE THIS NUMBER
 
-            //Used for sending error logs through the mesh
-            static constexpr int SIZEOF_SENSE_MODULE_ERROR_LOG_ENTRY_MESSAGE = 12;
-            typedef struct
-            {
-                u32 errorType : 8; //Workaround necessary for packing, should be of type ErrorTypes
-                u32 timestamp : 24; //This should be u32, but not enough space in that message, so it will wrap after 20 days
-                u32 extraInfo;
-                u32 errorCode;
+            // //Used for sending error logs through the mesh
+            // static constexpr int SIZEOF_SENSE_MODULE_ERROR_LOG_ENTRY_MESSAGE = 12;
+            // typedef struct
+            // {
+            //     u32 errorType : 8; //Workaround necessary for packing, should be of type ErrorTypes
+            //     u32 timestamp : 24; //This should be u32, but not enough space in that message, so it will wrap after 20 days
+            //     u32 extraInfo;
+            //     u32 errorCode;
 
-            } senseModuleErrorLogEntryMessage;
-            STATIC_ASSERT_SIZE(senseModuleErrorLogEntryMessage, 12);
+            // } senseModuleErrorLogEntryMessage;
+            // STATIC_ASSERT_SIZE(senseModuleErrorLogEntryMessage, 12);
 
             // static constexpr int SIZEOF_SENSE_MODULE_LIVE_REPORT_MESSAGE = 9;
             // typedef struct
