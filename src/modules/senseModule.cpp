@@ -44,7 +44,7 @@ senseModule::senseModule()
     : Module(SENSE_MODULE_ID, "sense")
 {
     //Enable the logtag for our vendor module template
-    GS->logger.EnableTag("SMOD");
+    GS->logger.EnableTag("SENSEMOD");
 
     isADCInitialized = false;
     this->avgAdcValue = 0;
@@ -84,21 +84,14 @@ void senseModule::TimerEventHandler(u16 passedTimeDs)
     //So instead, the asset fully relies on manual querying these messages. Other than "not making sense"
     //this can lead to issues on the Gateway if it receives a messages through a MA-Connection that has a
     //virtual partnerId as the gateway gets confused by the unknown nodeId.
-    if (GET_DEVICE_TYPE() != DeviceType::ASSET)
-    {
+    // if (GET_DEVICE_TYPE() != DeviceType::ASSET)
+    // {
 
-        if (SHOULD_IV_TRIGGER(GS->appTimerDs + GS->appTimerRandomOffsetDs, passedTimeDs, configuration.statusReportingIntervalDs)) {
-            SendStatus(NODE_ID_BROADCAST, 0, MessageType::MODULE_ACTION_RESPONSE);
-        }
-    }
+    //     if (SHOULD_IV_TRIGGER(GS->appTimerDs + GS->appTimerRandomOffsetDs, passedTimeDs, configuration.statusReportingIntervalDs)) {
+    //         SendStatus(NODE_ID_BROADCAST, 0, MessageType::MODULE_ACTION_RESPONSE);
+    //     }
+    // }
     //Measurement (measure short after reset and then priodically)
-    // logt("ERROR", "GS->appTimerDs: %u", (u32)GS->appTimerDs);
-    // logt("ERROR", "SEC_TO_DS(40): %u", (u32)SEC_TO_DS(40));
-    // logt("ERROR", "Boardconfig->lightIntensityAdcInputPin: %u", (u32)Boardconfig->lightIntensityAdcInputPin);
-    // logt("ERROR", "SHOULD_IV_TRIGGER: %u", (u32)SHOULD_IV_TRIGGER(GS->appTimerDs, passedTimeDs, lightIntensityMeasurementIntervalDs));
-    // logt("ERROR", "passedTimeDs: %u", (u32)passedTimeDs);
-    // logt("ERROR", "lightIntensityMeasurementIntervalDs: %u", (u32)lightIntensityMeasurementIntervalDs);
-    // logt("ERROR", "In side TimerEventHandler");
     if( (GS->appTimerDs < SEC_TO_DS(40) && Boardconfig->lightIntensityAdcInputPin != -1 )
         || SHOULD_IV_TRIGGER(GS->appTimerDs, passedTimeDs, lightIntensityMeasurementIntervalDs)){
             logt("ERROR", "In side TimerEventHandler and right before the call to the LightIntensityADC function ");
@@ -113,7 +106,7 @@ void senseModule::TimerEventHandler(u16 passedTimeDs)
         }
 
         periodicTimeSendWasActivePreviousTimerEventHandler = IsPeriodicTimeSendActive();
-        logt("STATUSMOD", "Periodic Time Send is now: %u", (u32)periodicTimeSendWasActivePreviousTimerEventHandler);
+        logt("SENSEMOD", "Periodic Time Send is now: %u", (u32)periodicTimeSendWasActivePreviousTimerEventHandler);
     }
 
     if (IsPeriodicTimeSendActive())
@@ -122,7 +115,7 @@ void senseModule::TimerEventHandler(u16 passedTimeDs)
         if(timeSinceLastPeriodicTimeSendDs > TIME_BETWEEN_PERIODIC_TIME_SENDS_DS){
             timeSinceLastPeriodicTimeSendDs = 0;
 
-            constexpr size_t bufferSize = sizeof(ComponentMessageHeaderVendor) + sizeof(GS->timeManager.GetTime());
+            constexpr size_t bufferSize = sizeof(ComponentMessageHeaderVendor) + sizeof((u8) 1);
             alignas(u32) u8 buffer[bufferSize];
             CheckedMemset(buffer, 0x00, sizeof(buffer));
 
@@ -137,8 +130,7 @@ void senseModule::TimerEventHandler(u16 passedTimeDs)
             outPacket->componentHeader.actionType = (u8)SensorMessageActionType::READ_RSP;
             outPacket->componentHeader.component = (u16)senseModuleComponent::TIME;
             outPacket->componentHeader.registerAddress = (u16)senseModuleRegister::TIME;
-
-            *(decltype(GS->timeManager.GetTime())*)outPacket->payload = GS->timeManager.GetTime();
+            *(decltype(GetLightIntensityInfo())*)outPacket->payload = GetLightIntensityInfo();
 
             GS->cm.SendMeshMessage(buffer, bufferSize);
         }
@@ -239,59 +231,30 @@ void senseModule::MeshMessageReceivedHandler(BaseConnection* connection, BaseCon
                 //Print packet to console
                 senseModuleStatusMessage const * data = (senseModuleStatusMessage const *) (packet->data);
 
-                logjson_partial("STATUSMOD", "{\"nodeId\":%u,\"type\":\"status\",\"module\":%u,", packet->header.sender, (u32) SENSE_MODULE_ID);
-                logjson_partial("STATUSMOD", "\"lightIntensityInfo\":%u,", data->lightIntensityInfo);
-                logjson("STATUSMOD", "}" SEP);
+                logjson_partial("SENSEMOD", "{\"nodeId\":%u,\"type\":\"status\",\"module\":%u,", packet->header.sender, (u32) SENSE_MODULE_ID);
+                logjson_partial("SENSEMOD", "\"lightIntensityInfo\":%u,", data->lightIntensityInfo);
+                logjson("SENSEMOD", "}" SEP);
             }
-        }
-    }
-
-    //Parse Module general messages
-    if(packetHeader->messageType == MessageType::MODULE_GENERAL){
-        ConnPacketModuleVendor const * packet = (ConnPacketModuleVendor const *)packetHeader;
-        //Check if our module is meant and we should trigger an action
-        if(packet->moduleId == vendorModuleId)
-        {
-            // senseModuleGeneralMessages actionType = (senseModuleGeneralMessages)packet->actionType;
-            // //Somebody reported its connections back
-            // if(actionType == senseModuleGeneralMessages::LIVE_REPORT)
-            // {
-            //     senseModuleLiveReportMessage const * packetData = (senseModuleLiveReportMessage const *) (packet->data);
-            //     logjson("STATUSMOD", "{\"type\":\"live_report\",\"nodeId\":%d,\"module\":%u,\"code\":%u,\"extra\":%u,\"extra2\":%u}" SEP, packet->header.sender, (u8)ModuleId::SENSE_MODULE, packetData->reportType, packetData->extra, packetData->extra2);
-            // }
         }
     }
 
     if (packetHeader->messageType == MessageType::COMPONENT_ACT && sendData->dataLength >= SIZEOF_CONN_PACKET_COMPONENT_MESSAGE)
     {
         ConnPacketComponentMessageVendor const * packet = (ConnPacketComponentMessageVendor const *)packetHeader;
-        // logt("ERROR", "packet->componentHeader.moduleId: %u", (u32)packet->componentHeader.moduleId);
-        // logt("ERROR", "moduleId: %u", (u32)moduleId);
         if (packet->componentHeader.moduleId == vendorModuleId)
         {
-            // logt("ERROR", "packet->componentHeader.actionType: %u", (u32)packet->componentHeader.actionType);
-            // logt("ERROR", "(u8)ActorMessageActionType::WRITE: %u", (u8)ActorMessageActionType::WRITE);
             if (packet->componentHeader.actionType == (u8)ActorMessageActionType::WRITE)
             {
-                // logt("ERROR", "packet->componentHeader.component: %u", (u32)packet->componentHeader.component);
-                // logt("ERROR", "(u16)senseModuleComponent::TIME: %u", (u16)senseModuleComponent::TIME);
                 if (packet->componentHeader.component == (u16)senseModuleComponent::TIME)
                 {
-                    // logt("ERROR", "packet->componentHeader.registerAddress: %u", (u32)packet->componentHeader.registerAddress);
-                    // logt("ERROR", "(u16)senseModuleRegister::TIME: %u", (u16)senseModuleRegister::TIME);
                     if (packet->componentHeader.registerAddress == (u16)senseModuleRegister::TIME)
                     {
-                        // logt("ERROR", "packet->payload[0]: %u", packet->payload[0]);
                         if (packet->payload[0] != 0)
                         {
                             periodicTimeSendStartTimestampDs = GS->appTimerDs;
                             timeSinceLastPeriodicTimeSendDs = TIME_BETWEEN_PERIODIC_TIME_SENDS_DS;
                             periodicTimeSendReceiver = packet->componentHeader.header.sender;
                             periodicTimeSendRequestHandle = packet->componentHeader.requestHandle;
-                            // logt("ERROR", "periodicTimeSendStartTimestampDs: %u", (u32)periodicTimeSendStartTimestampDs);
-                            // logt("ERROR", "timeSinceLastPeriodicTimeSendDs: %u", (u32)timeSinceLastPeriodicTimeSendDs);
-                            // logt("ERROR", "periodicTimeSendReceiver: %u", (u32)periodicTimeSendReceiver);
-                            // logt("ERROR", "periodicTimeSendRequestHandle: %u", (u32)periodicTimeSendRequestHandle);
                         }
                         else
                         {
@@ -301,11 +264,8 @@ void senseModule::MeshMessageReceivedHandler(BaseConnection* connection, BaseCon
                 }
             }
         }
-        // logt("ERROR", "periodicTimeSendStartTimestampDs: %u", (u32)periodicTimeSendStartTimestampDs);
     }
 }
-
-// #define _____________BATTERY_MEASUREMENT_________________
 
 void senseModule::AdcEventHandler()
 {
@@ -388,51 +348,12 @@ void senseModule::AvgADCValue()
 
 bool senseModule::IsPeriodicTimeSendActive()
 {
-    return periodicTimeSendStartTimestampDs != 0 && GS->appTimerDs < periodicTimeSendStartTimestampDs + PERIODIC_TIME_SEND_AUTOMATIC_DEACTIVATION;
+    return periodicTimeSendStartTimestampDs != 0; //&& GS->appTimerDs < periodicTimeSendStartTimestampDs + PERIODIC_TIME_SEND_AUTOMATIC_DEACTIVATION;
 }
 
 u8 senseModule::GetLightIntensityInfo() const
 {
     // logt("ERROR", "In side GetLightIntensityInfo");
-    logt("ERROR", "avgAdcValue: %u", (u32)avgAdcValue);
+    // logt("ERROR", "avgAdcValue: %u", (u32)avgAdcValue);
     return avgAdcValue;
-}
-
-// MeshAccessAuthorization senseModule::CheckMeshAccessPacketAuthorization(BaseConnectionSendData * sendData, u8 const * data, FmKeyId fmKeyId, DataDirection direction)
-// {
-//     ConnPacketHeader const * packet = (ConnPacketHeader const *)data;
-
-//     if (packet->messageType == MessageType::MODULE_TRIGGER_ACTION
-//         || packet->messageType == MessageType::MODULE_ACTION_RESPONSE)
-//     {
-//         ConnPacketModuleVendor const * mod = (ConnPacketModuleVendor const *)data;
-//         if (mod->moduleId == vendorModuleId)
-//         {
-//             //The Gateway queries get_status and get_device_info through the orga key.
-//             if (fmKeyId == FmKeyId::ORGANIZATION)
-//             {
-//                 static_assert((u8)senseModuleTriggerActionMessages::GET_LIGHT_INTENSITY         == (u8)senseModuleActionResponseMessages::LIGHT_INTENSITY,         "The following check assumes that both have the same value in both directions");
-//                 if (mod->actionType == (u8)senseModuleTriggerActionMessages::GET_LIGHT_INTENSITY)
-//                 {
-//                     return MeshAccessAuthorization::WHITELIST;
-//                 }
-//             }
-//         }
-//     }
-
-//     if (packet->messageType == MessageType::COMPONENT_ACT
-//         || packet->messageType == MessageType::COMPONENT_SENSE)
-//     {
-//         ConnPacketComponentMessageVendor const * packet = (ConnPacketComponentMessageVendor const *)data;
-//         if (packet->componentHeader.moduleId == vendorModuleId)
-//         {
-//             return MeshAccessAuthorization::WHITELIST;
-//         }
-//     }
-//     return MeshAccessAuthorization::UNDETERMINED;
-// }
-
-bool senseModule::IsInterestedInMeshAccessConnection()
-{
-    return IsPeriodicTimeSendActive();
 }
