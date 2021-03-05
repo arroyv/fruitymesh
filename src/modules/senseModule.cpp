@@ -176,13 +176,13 @@ void senseModule::SendStatus(NodeId toNode, u8 requestHandle, MessageType messag
 TerminalCommandHandlerReturnType senseModule::TerminalCommandHandler(const char* commandArgs[], u8 commandArgsSize)
 {
     //React on commands, return true if handled, false otherwise
-    if(commandArgsSize >= 4 && TERMARGS(2, moduleName))
+    if(commandArgsSize >= 4 && TERMARGS(2, moduleName)) //module name is sense
     {
         if(TERMARGS(0, "action"))
         {
             NodeId destinationNode = Utility::TerminalArgumentToNodeId(commandArgs[1]);
 
-            if(TERMARGS(3, "get_status"))
+            if(TERMARGS(3, "get_light_intensity"))
             {
                 SendModuleActionMessage(
                     MessageType::MODULE_TRIGGER_ACTION,
@@ -309,7 +309,7 @@ void senseModule::MeshMessageReceivedHandler(BaseConnection* connection, BaseCon
 
 void senseModule::AdcEventHandler()
 {
-    logt("ERROR", "In side AdcEventHandler");
+    // logt("ERROR", "In side AdcEventHandler");
     senseModule * p_senseModule = (senseModule *)GS->node.GetModuleById(SENSE_MODULE_ID);
     if (p_senseModule == nullptr) return;
     p_senseModule->AvgADCValue();
@@ -317,10 +317,10 @@ void senseModule::AdcEventHandler()
 }
 
 void senseModule::InitLightIntensityADC() {
-    logt("ERROR", "In side InitLightIntensityADC");
+    // logt("ERROR", "In side InitLightIntensityADC");
     if(Boardconfig->lightIntensityAdcInputPin == -1 || isADCInitialized){
-        logt("ERROR", "  battry pin is == -1: %u", (u32)Boardconfig->lightIntensityAdcInputPin);
-        logt("ERROR", "  ADC is initialized?: %u", (u32)isADCInitialized);
+        // logt("ERROR", "  battry pin is == -1: %u", (u32)Boardconfig->lightIntensityAdcInputPin);
+        // logt("ERROR", "  ADC is initialized?: %u", (u32)isADCInitialized);
         return;
     }
     ErrorType error = FruityHal::AdcInit(AdcEventHandler);
@@ -330,15 +330,15 @@ void senseModule::InitLightIntensityADC() {
 
     ErrorType err = ErrorType::SUCCESS;
 #if FEATURE_AVAILABLE(ADC_INTERNAL_MEASUREMENT)
-    logt("ERROR", "  ADC_INTERNAL_MEASUREMENT_AVAILABLE");
-    logt("ERROR", "   AdcReference::ADC_REFERENCE_0_6V, AdcResoultion::ADC_10_BIT, AdcGain::ADC_GAIN_1_6");
+    // logt("ERROR", "  ADC_INTERNAL_MEASUREMENT_AVAILABLE");
+    // logt("ERROR", "   AdcReference::ADC_REFERENCE_0_6V, AdcResoultion::ADC_10_BIT, AdcGain::ADC_GAIN_1_6");
     err = FruityHal::AdcConfigureChannel(pin,
                                     FruityHal::AdcReference::ADC_REFERENCE_0_6V, 
                                     FruityHal::AdcResoultion::ADC_10_BIT, 
                                     FruityHal::AdcGain::ADC_GAIN_1_6);
 #else
-    logt("ERROR", "  ADC_INTERNAL_MEASUREMENT_NOT_AVAILABLE");
-    logt("ERROR", "  AdcReference::ADC_REFERENCE_1_2V, AdcResoultion::ADC_8_BIT, AdcGain::ADC_GAIN_1");
+    // logt("ERROR", "  ADC_INTERNAL_MEASUREMENT_NOT_AVAILABLE");
+    // logt("ERROR", "  AdcReference::ADC_REFERENCE_1_2V, AdcResoultion::ADC_8_BIT, AdcGain::ADC_GAIN_1");
     err = FruityHal::AdcConfigureChannel(pin, 
                                    FruityHal::AdcReference::ADC_REFERENCE_1_2V, 
                                    FruityHal::AdcResoultion::ADC_8_BIT, 
@@ -347,19 +347,19 @@ void senseModule::InitLightIntensityADC() {
     if (err != ErrorType::SUCCESS)
     {
         logt("LIGHT_INTENSITY", "Failed to configure adc because %u", (u32)err);
-        logt("ERROR",  "Failed to configure adc because %u", (u32)err);
+        // logt("ERROR",  "Failed to configure adc because %u", (u32)err);
     }
     isADCInitialized = true;
 }
 void senseModule::LightIntensityADC(){
-    logt("ERROR", "Inside LightIntensityADC function");
-    logt("ERROR", "Boardconfig->lightIntensityAdcInputPin: %u", (u32)Boardconfig->lightIntensityAdcInputPin);
+    // logt("ERROR", "Inside LightIntensityADC function");
+    // logt("ERROR", "Boardconfig->lightIntensityAdcInputPin: %u", (u32)Boardconfig->lightIntensityAdcInputPin);
     InitLightIntensityADC();
     //Check if initialization did work
     if(!isADCInitialized || Boardconfig->lightIntensityAdcInputPin == -1) return;
 
 #ifndef SIM_ENABLED
-    logt("ERROR", "SIM_ENABLED");
+    // logt("ERROR", "SIM_ENABLED");
     if (Boardconfig->lightIntensityAdcInputPin >= 0) {
         FruityHal::GpioConfigureOutput(Boardconfig->lightIntensityMeasurementEnablePin);
         FruityHal::GpioPinSet(Boardconfig->lightIntensityMeasurementEnablePin);
@@ -374,14 +374,14 @@ void senseModule::LightIntensityADC(){
 
 void senseModule::AvgADCValue()
 {
-    logt("ERROR", "In side AvgADCValue");
+    // logt("ERROR", "In side AvgADCValue");
     u32 adc_sum_value = 0;
-    logt("ERROR", "LIGHT_INTENSITY_SAMPLES_IN_BUFFER: %u", (u32)LIGHT_INTENSITY_SAMPLES_IN_BUFFER);
+    // logt("ERROR", "LIGHT_INTENSITY_SAMPLES_IN_BUFFER: %u", (u32)LIGHT_INTENSITY_SAMPLES_IN_BUFFER);
     for (u16 i = 0; i < LIGHT_INTENSITY_SAMPLES_IN_BUFFER; i++) {
         //Buffer implemented for future use
         adc_sum_value += m_buffer[i];               //Sum all values in ADC buffer
     }
-    logt("ERROR", "adc_sum_value: %u", (u32)adc_sum_value);
+    // logt("ERROR", "adc_sum_value: %u", (u32)adc_sum_value);
 
     avgAdcValue = (adc_sum_value / LIGHT_INTENSITY_SAMPLES_IN_BUFFER);
 }
@@ -393,44 +393,44 @@ bool senseModule::IsPeriodicTimeSendActive()
 
 u8 senseModule::GetLightIntensityInfo() const
 {
-    logt("ERROR", "In side GetLightIntensityInfo");
+    // logt("ERROR", "In side GetLightIntensityInfo");
     logt("ERROR", "avgAdcValue: %u", (u32)avgAdcValue);
     return avgAdcValue;
 }
 
-MeshAccessAuthorization senseModule::CheckMeshAccessPacketAuthorization(BaseConnectionSendData * sendData, u8 const * data, FmKeyId fmKeyId, DataDirection direction)
-{
-    ConnPacketHeader const * packet = (ConnPacketHeader const *)data;
+// MeshAccessAuthorization senseModule::CheckMeshAccessPacketAuthorization(BaseConnectionSendData * sendData, u8 const * data, FmKeyId fmKeyId, DataDirection direction)
+// {
+//     ConnPacketHeader const * packet = (ConnPacketHeader const *)data;
 
-    if (packet->messageType == MessageType::MODULE_TRIGGER_ACTION
-        || packet->messageType == MessageType::MODULE_ACTION_RESPONSE)
-    {
-        ConnPacketModuleVendor const * mod = (ConnPacketModuleVendor const *)data;
-        if (mod->moduleId == vendorModuleId)
-        {
-            //The Gateway queries get_status and get_device_info through the orga key.
-            if (fmKeyId == FmKeyId::ORGANIZATION)
-            {
-                static_assert((u8)senseModuleTriggerActionMessages::GET_LIGHT_INTENSITY         == (u8)senseModuleActionResponseMessages::LIGHT_INTENSITY,         "The following check assumes that both have the same value in both directions");
-                if (mod->actionType == (u8)senseModuleTriggerActionMessages::GET_LIGHT_INTENSITY)
-                {
-                    return MeshAccessAuthorization::WHITELIST;
-                }
-            }
-        }
-    }
+//     if (packet->messageType == MessageType::MODULE_TRIGGER_ACTION
+//         || packet->messageType == MessageType::MODULE_ACTION_RESPONSE)
+//     {
+//         ConnPacketModuleVendor const * mod = (ConnPacketModuleVendor const *)data;
+//         if (mod->moduleId == vendorModuleId)
+//         {
+//             //The Gateway queries get_status and get_device_info through the orga key.
+//             if (fmKeyId == FmKeyId::ORGANIZATION)
+//             {
+//                 static_assert((u8)senseModuleTriggerActionMessages::GET_LIGHT_INTENSITY         == (u8)senseModuleActionResponseMessages::LIGHT_INTENSITY,         "The following check assumes that both have the same value in both directions");
+//                 if (mod->actionType == (u8)senseModuleTriggerActionMessages::GET_LIGHT_INTENSITY)
+//                 {
+//                     return MeshAccessAuthorization::WHITELIST;
+//                 }
+//             }
+//         }
+//     }
 
-    if (packet->messageType == MessageType::COMPONENT_ACT
-        || packet->messageType == MessageType::COMPONENT_SENSE)
-    {
-        ConnPacketComponentMessageVendor const * packet = (ConnPacketComponentMessageVendor const *)data;
-        if (packet->componentHeader.moduleId == vendorModuleId)
-        {
-            return MeshAccessAuthorization::WHITELIST;
-        }
-    }
-    return MeshAccessAuthorization::UNDETERMINED;
-}
+//     if (packet->messageType == MessageType::COMPONENT_ACT
+//         || packet->messageType == MessageType::COMPONENT_SENSE)
+//     {
+//         ConnPacketComponentMessageVendor const * packet = (ConnPacketComponentMessageVendor const *)data;
+//         if (packet->componentHeader.moduleId == vendorModuleId)
+//         {
+//             return MeshAccessAuthorization::WHITELIST;
+//         }
+//     }
+//     return MeshAccessAuthorization::UNDETERMINED;
+// }
 
 bool senseModule::IsInterestedInMeshAccessConnection()
 {

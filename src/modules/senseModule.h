@@ -139,7 +139,5 @@ private:
         #endif
         void MeshMessageReceivedHandler(BaseConnection* connection, BaseConnectionSendData* sendData, ConnPacketHeader const * packetHeader) override final;
         u8 GetLightIntensityInfo() const;
-        MeshAccessAuthorization CheckMeshAccessPacketAuthorization(BaseConnectionSendData* sendData, u8 const * data, FmKeyId fmKeyId, DataDirection direction) override final;
-        bool IsInterestedInMeshAccessConnection() override final;
 };
 
