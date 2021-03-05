@@ -50,7 +50,7 @@ void SetBoard_18(BoardConfiguration* c)
         c->lfClockSource = (u8)FruityHal::ClockSource::CLOCK_SOURCE_XTAL;
         c->lfClockAccuracy = (u8)FruityHal::ClockAccuracy::CLOCK_ACCURACY_20_PPM;
         c->dcDcEnabled = true;
-        c->batteryMeasurementEnablePin = 30;
-        c->batteryAdcInputPin = 30;
+        c->lightIntensityAdcInputPin = 30;
+        c->lightIntensityMeasurementEnablePin = 30;
     }
 }

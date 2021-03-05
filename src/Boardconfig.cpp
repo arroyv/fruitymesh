@@ -81,6 +81,17 @@ void Boardconf::ResetToDefaultConfiguration()
     configuration.voltageDividerR2 = 0;
     configuration.dcDcEnabled = false;
 
+    //sensor Pins
+    configuration.lightIntensityAdcInputPin = 0;
+    configuration.sensor1Pin = 0;
+    configuration.sensor2Pin = 0;
+    configuration.sensor3Pin = 0;
+
+    configuration.lightIntensityMeasurementEnablePin = 0;
+    configuration.sensor1MeasurementEnablePin = 0;
+    configuration.sensor2MeasurementEnablePin = 0;
+    configuration.sensor3MeasurementEnablePin = 0;
+
     //Now, we load all Default boards (nRf Development kits)
     SetBoard_4(&configuration);
     SetBoard_18(&configuration);

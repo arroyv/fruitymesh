@@ -89,6 +89,18 @@ typedef struct BoardConfiguration
     uint32_t voltageDividerR1;
     uint32_t voltageDividerR2;
     uint8_t dcDcEnabled;
+
+    // SensorPins
+    int8_t lightIntensityAdcInputPin;
+    int8_t sensor1Pin;
+    int8_t sensor2Pin;
+    int8_t sensor3Pin;
+
+    int8_t lightIntensityMeasurementEnablePin;
+    int8_t sensor1MeasurementEnablePin;
+    int8_t sensor2MeasurementEnablePin;
+    int8_t sensor3MeasurementEnablePin;
+
 } BoardConfiguration;
 #pragma pack(pop)
 

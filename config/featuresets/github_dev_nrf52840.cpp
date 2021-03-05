@@ -39,7 +39,8 @@
 #include "MeshAccessModule.h"
 #include "VendorTemplateModule.h"
 #include "GlobalState.h"
-#include "PingModule.h"
+//#include "PingModule.h"
+#include "senseModule.h"
 
 // This is an example featureset for the nRF52840
 // It has logging activated and is perfect for playing around with FruityMesh
@@ -100,7 +101,8 @@ u32 InitializeModules_github_dev_nrf52840(bool createModule)
     //Each Vendor module needs a RecordStorage id if it wants to store a persistent configuration
     //see the section for VendorModules in RecordStorage.h for more info
     size += GS->InitializeModule<VendorTemplateModule>(createModule, RECORD_STORAGE_RECORD_ID_VENDOR_MODULE_CONFIG_BASE + 0);
-    size += GS->InitializeModule<PingModule>(createModule);
+    // size += GS->InitializeModule<PingModule>(createModule);
+    size += GS->InitializeModule<senseModule>(createModule);
     size += GS->InitializeModule<MeshAccessModule>(createModule);
     return size;
 }
