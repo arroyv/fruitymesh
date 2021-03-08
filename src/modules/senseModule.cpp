@@ -94,7 +94,7 @@ void senseModule::TimerEventHandler(u16 passedTimeDs)
     //Measurement (measure short after reset and then priodically)
     if( (GS->appTimerDs < SEC_TO_DS(40) && Boardconfig->lightIntensityAdcInputPin != -1 )
         || SHOULD_IV_TRIGGER(GS->appTimerDs, passedTimeDs, lightIntensityMeasurementIntervalDs)){
-            logt("ERROR", "In side TimerEventHandler and right before the call to the LightIntensityADC function ");
+            // logt("ERROR", "In side TimerEventHandler and right before the call to the LightIntensityADC function ");
         LightIntensityADC();
     }
 
@@ -115,7 +115,7 @@ void senseModule::TimerEventHandler(u16 passedTimeDs)
         if(timeSinceLastPeriodicTimeSendDs > TIME_BETWEEN_PERIODIC_TIME_SENDS_DS){
             timeSinceLastPeriodicTimeSendDs = 0;
 
-            constexpr size_t bufferSize = sizeof(ComponentMessageHeaderVendor) + sizeof((u8) 1);
+            constexpr size_t bufferSize = sizeof(ComponentMessageHeaderVendor) + sizeof(GetLightIntensityInfo());
             alignas(u32) u8 buffer[bufferSize];
             CheckedMemset(buffer, 0x00, sizeof(buffer));
 
@@ -131,7 +131,6 @@ void senseModule::TimerEventHandler(u16 passedTimeDs)
             outPacket->componentHeader.component = (u16)senseModuleComponent::TIME;
             outPacket->componentHeader.registerAddress = (u16)senseModuleRegister::TIME;
             *(decltype(GetLightIntensityInfo())*)outPacket->payload = GetLightIntensityInfo();
-
             GS->cm.SendMeshMessage(buffer, bufferSize);
         }
     }
@@ -167,6 +166,12 @@ void senseModule::SendStatus(NodeId toNode, u8 requestHandle, MessageType messag
 #ifdef TERMINAL_ENABLED
 TerminalCommandHandlerReturnType senseModule::TerminalCommandHandler(const char* commandArgs[], u8 commandArgsSize)
 {
+    //modules commands
+        // action [nodeId] sense get_light_intensity
+        // component_act 546 2882339824 1 0xABCD 0x1234 01
+        // component_act 546 2882339824 1 0xABCD 0x1234 00
+        // component_act 546 3 1 0xABCD 0x1234 01
+        // component_act 546 3 1 0xABCD 0x1234 00
     //React on commands, return true if handled, false otherwise
     if(commandArgsSize >= 4 && TERMARGS(2, moduleName)) //module name is sense
     {
@@ -231,7 +236,7 @@ void senseModule::MeshMessageReceivedHandler(BaseConnection* connection, BaseCon
                 //Print packet to console
                 senseModuleStatusMessage const * data = (senseModuleStatusMessage const *) (packet->data);
 
-                logjson_partial("SENSEMOD", "{\"nodeId\":%u,\"type\":\"status\",\"module\":%u,", packet->header.sender, (u32) SENSE_MODULE_ID);
+                logjson_partial("SENSEMOD", "{\"nodeId\":%u,\"module\":%u,", packet->header.sender, (u32) SENSE_MODULE_ID);
                 logjson_partial("SENSEMOD", "\"lightIntensityInfo\":%u,", data->lightIntensityInfo);
                 logjson("SENSEMOD", "}" SEP);
             }
@@ -265,6 +270,24 @@ void senseModule::MeshMessageReceivedHandler(BaseConnection* connection, BaseCon
             }
         }
     }
+    // if (packetHeader->messageType == MessageType::COMPONENT_SENSE)
+    // {
+    //     ConnPacketComponentMessageVendor const * packet = (ConnPacketComponentMessageVendor const *)packetHeader;
+
+    //     if (packet->componentHeader.actionType == (u8)SensorMessageActionType::READ_RSP)
+    //     {
+    //         if (packet->componentHeader.component == (u16)senseModuleComponent::TIME)
+    //         {
+    //             if (packet->componentHeader.registerAddress == (u16)senseModuleRegister::TIME)
+    //             {
+    //                 if (packet->payload[0] != 0)
+    //                 logjson_partial("SENSEMOD", "{\"SendingNodeId\":%u,\"module\":%u,", packet->componentHeader.moduleId , (u32) SENSE_MODULE_ID);
+    //                 logjson_partial("SENSEMOD", "\"lightIntensityInfo\":%u,", packet->payload[0]);
+    //                 logjson("SENSEMOD", "}" SEP);
+    //             }
+    //         }
+    //     }
+    // }
 }
 
 void senseModule::AdcEventHandler()
@@ -348,12 +371,12 @@ void senseModule::AvgADCValue()
 
 bool senseModule::IsPeriodicTimeSendActive()
 {
-    return periodicTimeSendStartTimestampDs != 0; //&& GS->appTimerDs < periodicTimeSendStartTimestampDs + PERIODIC_TIME_SEND_AUTOMATIC_DEACTIVATION;
+    return periodicTimeSendStartTimestampDs != 0 && GS->appTimerDs < periodicTimeSendStartTimestampDs + PERIODIC_TIME_SEND_AUTOMATIC_DEACTIVATION;
 }
 
 u8 senseModule::GetLightIntensityInfo() const
 {
     // logt("ERROR", "In side GetLightIntensityInfo");
-    // logt("ERROR", "avgAdcValue: %u", (u32)avgAdcValue);
+    logt("ERROR", "avgAdcValue: %u", (u32)avgAdcValue);
     return avgAdcValue;
 }

@@ -1343,6 +1343,7 @@ void Node::MeshMessageReceivedHandler(BaseConnection* connection, BaseConnection
         u8 actionType;
         u16 component;
         u16 registerAddress;
+        u8 payloadContent;
         char payloadString[200];
 
         const ComponentMessageHeader* componentHeader = (const ComponentMessageHeader*)packetHeader;
@@ -1375,7 +1376,7 @@ void Node::MeshMessageReceivedHandler(BaseConnection* connection, BaseConnection
             actionType = data->componentHeader.actionType;
             component = data->componentHeader.component;
             registerAddress = data->componentHeader.registerAddress;
-
+            payloadContent = data->payload[0];
             MessageLength payloadLength = sendData->dataLength - sizeof(data->componentHeader);
             Logger::ConvertBufferToBase64String(data->payload, payloadLength, payloadString, sizeof(payloadString));
         }
@@ -1390,7 +1391,8 @@ void Node::MeshMessageReceivedHandler(BaseConnection* connection, BaseConnection
             "\"actionType\":%u,"
             "\"component\":\"0x%04X\","
             "\"register\":\"0x%04X\","
-            "\"payload\":\"%s\""
+            "\"payloadBase64String\":\"%s\""
+            "\"payload\":\"%u\""
             "}" SEP,
 
             senderId,
@@ -1400,7 +1402,8 @@ void Node::MeshMessageReceivedHandler(BaseConnection* connection, BaseConnection
             actionType,
             component,
             registerAddress,
-            payloadString);
+            payloadString,
+            payloadContent);
 
     }
 
