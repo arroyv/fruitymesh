@@ -172,6 +172,10 @@ TerminalCommandHandlerReturnType senseModule::TerminalCommandHandler(const char*
         // component_act 546 2882339824 1 0xABCD 0x1234 00
         // component_act 546 3 1 0xABCD 0x1234 01
         // component_act 546 3 1 0xABCD 0x1234 00
+        // component_act 546 2882339824 1 0xABCD 0x1234 01
+        // component_act 207 2882339824 1 0xABCD 0x1234 01
+        // component_act 142 2882339824 1 0xABCD 0x1234 01
+        // component_act 503 2882339824 1 0xABCD 0x1234 01
     //React on commands, return true if handled, false otherwise
     if(commandArgsSize >= 4 && TERMARGS(2, moduleName)) //module name is sense
     {
@@ -270,24 +274,6 @@ void senseModule::MeshMessageReceivedHandler(BaseConnection* connection, BaseCon
             }
         }
     }
-    // if (packetHeader->messageType == MessageType::COMPONENT_SENSE)
-    // {
-    //     ConnPacketComponentMessageVendor const * packet = (ConnPacketComponentMessageVendor const *)packetHeader;
-
-    //     if (packet->componentHeader.actionType == (u8)SensorMessageActionType::READ_RSP)
-    //     {
-    //         if (packet->componentHeader.component == (u16)senseModuleComponent::TIME)
-    //         {
-    //             if (packet->componentHeader.registerAddress == (u16)senseModuleRegister::TIME)
-    //             {
-    //                 if (packet->payload[0] != 0)
-    //                 logjson_partial("SENSEMOD", "{\"SendingNodeId\":%u,\"module\":%u,", packet->componentHeader.moduleId , (u32) SENSE_MODULE_ID);
-    //                 logjson_partial("SENSEMOD", "\"lightIntensityInfo\":%u,", packet->payload[0]);
-    //                 logjson("SENSEMOD", "}" SEP);
-    //             }
-    //         }
-    //     }
-    // }
 }
 
 void senseModule::AdcEventHandler()
@@ -367,6 +353,13 @@ void senseModule::AvgADCValue()
     // logt("ERROR", "adc_sum_value: %u", (u32)adc_sum_value);
 
     avgAdcValue = (adc_sum_value / LIGHT_INTENSITY_SAMPLES_IN_BUFFER);
+    //Convert Adc to lumens
+    // pointed a iphone x directly at the photoresistor (max 50 lumnes and got a reading of 150 max)
+    //covered teh photoresistor and got a min value of 2
+    //derived this formula y = 0.5x-0.5
+    double temp = (0.5) * avgAdcValue - (0.5);
+    avgAdcValue = (u8) temp; 
+
 }
 
 bool senseModule::IsPeriodicTimeSendActive()
@@ -375,8 +368,8 @@ bool senseModule::IsPeriodicTimeSendActive()
 }
 
 u8 senseModule::GetLightIntensityInfo() const
-{
+{   
     // logt("ERROR", "In side GetLightIntensityInfo");
-    logt("ERROR", "avgAdcValue: %u", (u32)avgAdcValue);
+    // logt("ERROR", "avgAdcValue: %u", (u32)avgAdcValue);
     return avgAdcValue;
 }

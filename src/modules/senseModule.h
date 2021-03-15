@@ -40,7 +40,7 @@ constexpr VendorModuleId SENSE_MODULE_ID = GET_VENDOR_MODULE_ID(0xABCD, 3);
 constexpr u8 SENSE_MODULE_CONFIG_VERSION = 1;
 constexpr u16 SENSE_MODULE_MAX_HOPS = NODE_ID_HOPS_BASE + NODE_ID_HOPS_BASE_SIZE - 1;
 
-constexpr size_t LIGHT_INTENSITY_SAMPLES_IN_BUFFER = 1; //Number of SAADC samples in RAM before returning a SAADC event. For low power SAADC set this constant to 1. Otherwise the EasyDMA will be enabled for an extended time which consumes high current.
+constexpr size_t LIGHT_INTENSITY_SAMPLES_IN_BUFFER = 3; //Number of SAADC samples in RAM before returning a SAADC event. For low power SAADC set this constant to 1. Otherwise the EasyDMA will be enabled for an extended time which consumes high current.
 
 enum class senseModuleComponent :u16 {
     TIME = 0xABCD,
@@ -119,7 +119,7 @@ private:
 
         bool periodicTimeSendWasActivePreviousTimerEventHandler = false;
         u32 periodicTimeSendStartTimestampDs = 0;
-        constexpr static u32 PERIODIC_TIME_SEND_AUTOMATIC_DEACTIVATION = SEC_TO_DS(/*10 minutes*/ 10 * 60);
+        constexpr static u32 PERIODIC_TIME_SEND_AUTOMATIC_DEACTIVATION = SEC_TO_DS(/*10 minutes*/ 20 * 60);
         constexpr static u32 TIME_BETWEEN_PERIODIC_TIME_SENDS_DS = SEC_TO_DS(/*5 seconds*/5);
         u32 timeSinceLastPeriodicTimeSendDs = 0;
         NodeId periodicTimeSendReceiver = 0;

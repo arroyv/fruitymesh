@@ -1,0 +1,1555 @@
+{
+	"results": [
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.17759472737249393,
+				"y": 0.23246652996015016,
+				"z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.38208387466209887,
+				"y": 0.23078903923038935,
+				"z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.2590287083771432,
+				"y": 0.23092137692517284,
+				"z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.298164102442075,
+				"y": 0.2313406779611256,
+				"z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.3406331602425614,
+				"y": 0.23016522933260627,
+				"z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.42287920874432844,
+				"y": 0.2328655641110851,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.2179027876940823,
+				"y": 0.23216672785713885,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.46389580169547284,
+				"y": 0.23121883263408702,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.49881760323099594,
+				"y": 0.23250499342797343,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.5351944567027186,
+				"y": 0.23250496889883598,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.5693887322701418,
+				"y": 0.23379095798876018,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.6006727929518192,
+				"y": 0.23250496889883598,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.6305018572039705,
+				"y": 0.23379095798876018,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.6588758695199222,
+				"y": 0.23507697160782187,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.690159874694926,
+				"y": 0.23379095798876018,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.7178063055361045,
+				"y": 0.23121888169236193,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.7432701029663104,
+				"y": 0.23121888169236193,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.768006318921743,
+				"y": 0.23250496889883598,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.7963803312376947,
+				"y": 0.23379095798876018,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.8262092844764991,
+				"y": 0.2363630097560209,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+
+    {
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.17759472737249393,
+				"y": 
+10.23246652996015016,
+				"z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.38208387466209887,
+				"y": 
+10.23078903923038935,
+				"z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.2590287083771432,
+				"y": 
+10.23092137692517284,
+				"z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.298164102442075,
+				"y": 
+10.2313406779611256,
+				"z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.3406331602425614,
+				"y": 
+10.23016522933260627,
+				"z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.42287920874432844,
+				"y": 
+10.2328655641110851,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.2179027876940823,
+				"y": 
+10.23216672785713885,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.46389580169547284,
+				"y": 
+10.23121883263408702,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.49881760323099594,
+				"y": 
+10.23250499342797343,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.5351944567027186,
+				"y": 
+10.23250496889883598,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.5693887322701418,
+				"y": 
+10.23379095798876018,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.6006727929518192,
+				"y": 
+10.23250496889883598,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.6305018572039705,
+				"y": 
+10.23379095798876018,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.6588758695199222,
+				"y": 
+10.23507697160782187,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.690159874694926,
+				"y": 
+10.23379095798876018,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.7178063055361045,
+				"y": 
+10.23121888169236193,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.7432701029663104,
+				"y": 
+10.23121888169236193,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.768006318921743,
+				"y": 
+10.23250496889883598,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.7963803312376947,
+				"y": 
+10.23379095798876018,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+		{
+			"platform": "BLENODE",
+			"properties": {
+				"x": 0.8262092844764991,
+				"y": 
+10.2363630097560209,
+        "z": 0,
+				"onMap": true,
+        "cherrySimFeatureSet":
+"github_dev_nrf52"
+			}
+		},
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.01,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.02,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.03,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.04,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.05,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.06,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.07,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.08,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.09,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.10,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.11,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.12,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.13,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.14,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.15,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.16,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.17,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.18,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.19,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.20,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.21,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.22,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.23,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.24,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.25,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.26,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.27,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.28,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.29,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.30,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.31,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.32,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.33,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.34,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.35,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.36,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.37,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.38,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.39,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.40,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.41,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.42,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.43,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.44,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.45,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.46,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.47,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.48,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.49,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.50,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.51,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.52,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.53,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.54,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.55,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.56,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.57,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.58,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.59,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.60,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.61,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.62,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.63,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.64,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.65,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.66,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.67,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.68,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.69,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.70,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.71,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.72,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.73,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.74,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.75,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.76,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.77,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.78,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.79,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.80,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.81,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.82,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.83,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.84,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.85,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.86,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.87,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.88,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.89,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.90,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.91,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.92,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.93,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.94,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.95,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.96,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.97,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.98,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    },
+    {
+        "platform": "BLENODE",
+        "properties": 
+        {
+            "x": 0.99,
+            "y": 0.8,
+            "z": 0,
+            "onMap": true,
+            "cherrySimFeatureSet":"github_dev_nrf52"
+        }
+    }
+	]
+}
+

@@ -96,7 +96,7 @@ extern "C"{
 
 using json = nlohmann::json;
 
-
+using namespace std;
 
 //########################## Simulation-Step-Constants ####################################
 // These values may not change while simulating a node.
@@ -1206,6 +1206,7 @@ TerminalCommandHandlerReturnType CherrySim::TerminalCommandHandler(const std::ve
                     else if (animationSubCommand == "add_keypoint")
                     {
                         //sim animation add_keypoint my_anim_name 1 2 3 10
+                        //sim animation add_keypoint fall 1 2 3 10
                         if (commandArgs.size() >= 8)
                         {
                             const float x        = ::atof(commandArgs[4].c_str());
@@ -1347,6 +1348,7 @@ TerminalCommandHandlerReturnType CherrySim::TerminalCommandHandler(const std::ve
                         //This is relative to the normalized path so that it is (more or less) guaranteed that
                         //it is part of the repository. This is necessary so that the replay function still works
                         //properly.
+                        //cout << CherrySimUtils::GetNormalizedPath();
                         if (AnimationLoadJsonFromPath((CherrySimUtils::GetNormalizedPath() + commandArgs[3]).c_str()))
                         {
                             return TerminalCommandHandlerReturnType::SUCCESS;
@@ -3773,6 +3775,8 @@ bool CherrySim::AnimationLoadJsonFromPath(const char * path)
 
         if (it.value().contains("looped"))
         {
+            printf("Animation looped: %s value!" EOL, it.value()["looped"] ? "true" : "false");
+
             AnimationSetLooped(it.key(), it.value()["looped"]);
         }
 
@@ -3780,10 +3784,12 @@ bool CherrySim::AnimationLoadJsonFromPath(const char * path)
         {
             if (it2.value().contains("type"))
             {
+                std::cout << "x: " << it2.value()["x"] << ", y:" << it2.value()["y"] << ", z:" << it2.value()["z"] << ", durationSec:" << it2.value()["durationSec"] << ", type:" << it2.value()["type"] << '\n';
                 AnimationAddKeypoint(it.key(), it2.value()["x"], it2.value()["y"], it2.value()["z"], it2.value()["durationSec"], StringToMoveAnimationType(it2.value()["type"]));
             }
             else
             {
+                std::cout << "x: " << it2.value()["x"] << ", y:" << it2.value()["y"] << ", z:" << it2.value()["z"] << ", durationSec:" << it2.value()["durationSec"] << '\n';
                 AnimationAddKeypoint(it.key(), it2.value()["x"], it2.value()["y"], it2.value()["z"], it2.value()["durationSec"]);
             }
         }
